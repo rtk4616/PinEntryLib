@@ -1,0 +1,38 @@
+# Generated files
+*.apk
+*.ap_
+*.class
+*.dex
+*.jar
+gen/
+bin/
+build/
+local.properties
+
+# Eclipse project files
+.classpath
+.project
+.metadata
+.settings
+
+# Intellij
+.idea
+*.iml
+
+# Netbeans
+nb-configuration.xml
+nbactions.xml
+.nb-gradle
+nbproject
+
+# SVN
+.svn
+
+# Gradle
+.gradle
+
+# Backup files
+*~
+*.bak
+*.orig
+*.swp

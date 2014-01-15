@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@color/black"
+    >
+
+    <TextView
+        android:text="Enter Your Pin Code"
+        android:textColor="@color/white"
+        android:id="@+id/pin_input_hint"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="10sp"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/pin_entry_hidden_focus"
+        android:textSize="1sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:textColor="@null"
+        />
+    <LinearLayout
+        android:id="@+id/pin_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/digit0"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:maxLength="1"
+            android:nextFocusForward="@+id/digit1"
+            />
+
+        <TextView
+            android:id="@+id/digit1"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:maxLength="1"
+            android:nextFocusForward="@+id/digit2"
+            android:layout_marginLeft="4dp"/>
+
+        <TextView
+            android:id="@+id/digit2"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:maxLength="1"
+            android:nextFocusForward="@+id/digit3"
+            android:layout_marginLeft="4dp"/>
+
+
+        <TextView
+            android:id="@+id/digit3"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:maxLength="1"
+            android:layout_marginLeft="4dp"/>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/pin_cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pin_cancel_text"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"/>
+
+</LinearLayout>
