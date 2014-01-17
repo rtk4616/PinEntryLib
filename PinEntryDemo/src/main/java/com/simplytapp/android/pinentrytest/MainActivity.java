@@ -2,42 +2,73 @@ package com.simplytapp.android.pinentrytest;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.simplytapp.android.pinentrylib.PinDialog;
 
 
-public class MainActivity extends Activity implements PinDialog.ResultHandler {
+public class MainActivity extends Activity {
 
     private final static String TAG = "PINLIB_DEMO";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    public void displayPinDialog(View view) {
-        new PinDialog("Enter Pin Code", "Cancel", view.getContext()).show(this);
+    public void setPinDialog(View view) {
+        new PinDialog("Set Pin Code", "Cancel", view.getContext()).show(
+                new PinDialog.ResultHandler() {
+                    @Override
+                    public void pinSet(String pin) {
+                        setCurrentPin(pin);
+                        showToastMessage("Pin Changed");
+                    }
+
+                    @Override
+                    public void pinCancelled() {
+                        showToastMessage("Pin Set Cancelled");
+                    }
+                }
+        );
     }
 
-    @Override
-    public void pinSet(String pin) {
-        String message = "Pin Set: " + pin;
-        Log.d(TAG, message);
+    public void verifyPinDialog(View view) {
+        new PinDialog("Verify Pin Code", "Cancel", view.getContext()).show(
+                new PinDialog.ResultHandler() {
+                    @Override
+                    public void pinSet(String pin) {
+                        String message = pin.equals(getCurrentPin()) ? "Pin Verified" : "Pin Verification Failed";
+                        showToastMessage(message);
+                    }
+
+                    @Override
+                    public void pinCancelled() {
+                        showToastMessage("Pin Verification Cancelled");
+                    }
+                }
+        );
+    }
+
+
+
+    public void showToastMessage(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
 
-    @Override
-    public void pinCancelled() {
-        String message = "Pin Cancelled";
-        Log.d(TAG, message);
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+    private void setCurrentPin(String pin) {
+        ((TextView)findViewById(R.id.existing_pin)).setText(pin);
     }
+
+    private String getCurrentPin() {
+        return ((TextView)findViewById(R.id.existing_pin)).getText().toString();
+    }
+
+
 }
